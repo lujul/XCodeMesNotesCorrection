@@ -10,6 +10,8 @@
 		5CA48441E2B78FDB2D2372EE /* Pods_MesNotesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75402F4482FED5451A50D5D /* Pods_MesNotesTests.framework */; };
 		83110130FC6AE488BE19DE92 /* Pods_MesNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4B22DBB65DDDF8D582FE3A /* Pods_MesNotes.framework */; };
 		DD2CA16D3816DE880E8340C5 /* Pods_MesNotesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02B79D8E53243F2997E6460 /* Pods_MesNotesUITests.framework */; };
+		F89036741DE84A2A0074B5C0 /* SubjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89036731DE84A2A0074B5C0 /* SubjectManager.swift */; };
+		F89036761DE84BDE0074B5C0 /* SubjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89036751DE84BDE0074B5C0 /* SubjectManagerTests.swift */; };
 		F8AD9CB11DE6F8F8001CA9ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD9CB01DE6F8F8001CA9ED /* AppDelegate.swift */; };
 		F8AD9CB31DE6F8F8001CA9ED /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD9CB21DE6F8F8001CA9ED /* MasterViewController.swift */; };
 		F8AD9CB51DE6F8F8001CA9ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD9CB41DE6F8F8001CA9ED /* DetailViewController.swift */; };
@@ -50,6 +52,8 @@
 		B75402F4482FED5451A50D5D /* Pods_MesNotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MesNotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02B79D8E53243F2997E6460 /* Pods_MesNotesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MesNotesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4B22DBB65DDDF8D582FE3A /* Pods_MesNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MesNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F89036731DE84A2A0074B5C0 /* SubjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectManager.swift; sourceTree = "<group>"; };
+		F89036751DE84BDE0074B5C0 /* SubjectManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectManagerTests.swift; sourceTree = "<group>"; };
 		F8AD9CAD1DE6F8F8001CA9ED /* MesNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MesNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AD9CB01DE6F8F8001CA9ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8AD9CB21DE6F8F8001CA9ED /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				F8AD9CC71DE6F8F8001CA9ED /* SubjectTests.swift */,
 				F8AD9CC91DE6F8F8001CA9ED /* Info.plist */,
 				F8AD9CE71DE70190001CA9ED /* MarkTests.swift */,
+				F89036751DE84BDE0074B5C0 /* SubjectManagerTests.swift */,
 			);
 			path = MesNotesTests;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			children = (
 				F8AD9CE11DE6FA13001CA9ED /* Subject.swift */,
 				F8AD9CE31DE6FAC9001CA9ED /* Mark.swift */,
+				F89036731DE84A2A0074B5C0 /* SubjectManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89036741DE84A2A0074B5C0 /* SubjectManager.swift in Sources */,
 				F8AD9CE21DE6FA13001CA9ED /* Subject.swift in Sources */,
 				F8AD9CB51DE6F8F8001CA9ED /* DetailViewController.swift in Sources */,
 				F8AD9CB31DE6F8F8001CA9ED /* MasterViewController.swift in Sources */,
@@ -482,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8AD9CE81DE70190001CA9ED /* MarkTests.swift in Sources */,
+				F89036761DE84BDE0074B5C0 /* SubjectManagerTests.swift in Sources */,
 				F8AD9CC81DE6F8F8001CA9ED /* SubjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
