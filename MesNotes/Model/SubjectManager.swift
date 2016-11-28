@@ -13,6 +13,10 @@ class SubjectManager {
     private let _subjectList:Results<Subject>
     private let _realm:Realm
     
+    var subjectList:Results<Subject> {
+        return _subjectList
+    }
+    
     init(withRealm realm:Realm) {
         _realm = realm
         _subjectList = _realm.objects(Subject.self).sorted(byProperty: "title", ascending: false)

@@ -71,6 +71,7 @@
 		F8AD9CE11DE6FA13001CA9ED /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		F8AD9CE31DE6FAC9001CA9ED /* Mark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
 		F8AD9CE71DE70190001CA9ED /* MarkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkTests.swift; sourceTree = "<group>"; };
+		F8E8687E1DEBD58600CB87BD /* MesNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MesNotes.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +150,7 @@
 		F8AD9CAF1DE6F8F8001CA9ED /* MesNotes */ = {
 			isa = PBXGroup;
 			children = (
+				F8E8687E1DEBD58600CB87BD /* MesNotes.entitlements */,
 				F8AD9CE01DE6F9AC001CA9ED /* Model */,
 				F8AD9CB01DE6F8F8001CA9ED /* AppDelegate.swift */,
 				F8AD9CB21DE6F8F8001CA9ED /* MasterViewController.swift */,
@@ -270,6 +272,14 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = SA73FE547W;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					F8AD9CC21DE6F8F8001CA9ED = {
 						CreatedOnToolsVersion = 8.1;
@@ -635,8 +645,10 @@
 			baseConfigurationReference = 0B16E06203344DCCF59D6624 /* Pods-MesNotes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MesNotes/MesNotes.entitlements;
 				DEVELOPMENT_TEAM = SA73FE547W;
 				INFOPLIST_FILE = MesNotes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbritto.MesNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -649,8 +661,10 @@
 			baseConfigurationReference = 75C3FD90BB4F2EACA867BD47 /* Pods-MesNotes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MesNotes/MesNotes.entitlements;
 				DEVELOPMENT_TEAM = SA73FE547W;
 				INFOPLIST_FILE = MesNotes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbritto.MesNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";

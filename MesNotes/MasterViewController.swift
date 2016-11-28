@@ -10,13 +10,15 @@ import UIKit
 import RealmSwift
 
 class MasterViewController: UITableViewController {
-    let _subjectManager:SubjectManager = SubjectManager(withRealm:try! Realm())
+    private static let SERVER_IP = "192.168.1.77:9080"
+    var _subjectManager:SubjectManager = SubjectManager(withRealm:try! Realm())
     var detailViewController: DetailViewController? = nil
+    var _notificationToken:NotificationToken!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        prepareRealm()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
 
@@ -26,6 +28,62 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    func realmConnected(withUser user:SyncUser) {
+        // can now open a synchronized Realm with this user
+        let syncServerURL = URL(string: "realm://\(MasterViewController.SERVER_IP)/~/maxRealm")!
+        let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
+        
+        // Open the remote Realm
+        let realm = try! Realm(configuration: config)
+        _subjectManager = SubjectManager(withRealm: realm)
+        // Observe Results Notifications
+        _notificationToken = _subjectManager.subjectList.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                tableView.reloadData()
+                break
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+                break
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+                break
+            }
+        }
+
+    }
+    
+    func prepareRealm() {
+        let serverUrl = URL(string: "http://\(MasterViewController.SERVER_IP)")
+        let credentials = SyncCredentials.usernamePassword(username: "maxime.britto@gmail.com", password: "p")
+        SyncUser.logIn(with: credentials, server: serverUrl!) {
+            user, error in
+            if let user = user {
+                DispatchQueue.main.async {
+                    self.realmConnected(withUser: user)
+                }
+                
+                
+            } else if let error = error {
+                // handle error
+                print("REALM : error \(error)")
+            }
+            
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +114,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewSubject(withTitle title:String) {
-        if let newSubject = _subjectManager.addSubject(withTitle: title) {
-            let indexPath = IndexPath(row: _subjectManager.getIndex(forSubject: newSubject)!, section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        }
+        _ = _subjectManager.addSubject(withTitle: title)
         
         
     }
@@ -122,7 +177,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             _subjectManager.deleteSubject(atIndex: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
