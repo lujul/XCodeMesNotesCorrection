@@ -1,0 +1,6 @@
+framework module Pods_MesNotesTests {
+  umbrella header "Pods-MesNotesTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

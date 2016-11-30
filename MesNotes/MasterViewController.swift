@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class MasterViewController: UITableViewController {
-    private static let SERVER_IP = "192.168.1.77:9080"
+    private static let SERVER_IP = "192.168.1.42:9080"
     var _subjectManager:SubjectManager = SubjectManager(withRealm:try! Realm())
     var detailViewController: DetailViewController? = nil
     var _notificationToken:NotificationToken!
@@ -32,7 +32,7 @@ class MasterViewController: UITableViewController {
     
     func realmConnected(withUser user:SyncUser) {
         // can now open a synchronized Realm with this user
-        let syncServerURL = URL(string: "realm://\(MasterViewController.SERVER_IP)/~/maxRealm")!
+        let syncServerURL = URL(string: "realm://\(MasterViewController.SERVER_IP)/~/julRealm")!
         let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
         
         // Open the remote Realm
@@ -68,7 +68,7 @@ class MasterViewController: UITableViewController {
     
     func prepareRealm() {
         let serverUrl = URL(string: "http://\(MasterViewController.SERVER_IP)")
-        let credentials = SyncCredentials.usernamePassword(username: "maxime.britto@gmail.com", password: "p")
+        let credentials = SyncCredentials.usernamePassword(username: "julien3b@gmail.com", password: "toto")
         SyncUser.logIn(with: credentials, server: serverUrl!) {
             user, error in
             if let user = user {
